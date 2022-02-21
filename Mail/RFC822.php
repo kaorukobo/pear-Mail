@@ -871,10 +871,9 @@ class Mail_RFC822 {
 
         // Validate each word.
         foreach ($words as $word) {
-            // word cannot be empty (#17317)
-            if ($word === '') {
-                return false;
-            }
+            // Allow local part like `foo...` which appears in addrs belongs to Japan cellular companies (docomo, etc).
+            // > word cannot be empty (#17317)
+
             // If this word contains an unquoted space, it is invalid. (6.2.4)
             if (strpos($word, ' ') && $word[0] !== '"')
             {
